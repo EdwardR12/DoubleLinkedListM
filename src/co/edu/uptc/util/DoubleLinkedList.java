@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 
 public class DoubleLinkedList<T> implements List<T>{
     private Node<T> head;
@@ -105,22 +106,17 @@ public class DoubleLinkedList<T> implements List<T>{
 
     @Override
     public int lastIndexOf(Object o) {
-        int output = size; // pq el size se sale de bounds no?
+        int output = size; 
         boolean found = false;
-        
-        if (o==null) {
-            output = -1; // -1 cuando el objeto inicial es null
-            return output;
-        }
         
         while (output > 0 && !found) {
             output--;
-            if (get(output).equals(o)) {
+            if (Objects.equals(o, get(output))) {
                 found =  true;
             }
         }
 
-        return output;
+        return found ? output : -1; 
 
 
     }
